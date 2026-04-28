@@ -1,8 +1,6 @@
 import mongoose from "mongoose"
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
-import { atlasConnection, nocapConnection } from "../database/dbconnect.js"
-
 const UserSchema = new mongoose.Schema({
     name:{
         type:String,
@@ -473,4 +471,4 @@ UserSchema.methods.Token = function(){
     }
 )
 }
-export const User = atlasConnection.model("User", UserSchema)
+export const User = new mongoose.model("User", UserSchema)
