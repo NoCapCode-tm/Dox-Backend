@@ -96,12 +96,12 @@ const UserSchema = new mongoose.Schema({
 
     phone:{
         permanent:{
-        type:String,
+        type:Number,
         unique:true,
         sparse:true
     },
      alternate:{
-        type:String,
+        type:Number,
         unique:true,
         sparse:true
     },
