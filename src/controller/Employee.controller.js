@@ -123,7 +123,7 @@ const onboardingdetails = async (req, res) => {
           "onboarding/govid2image",
           `${userId}-govid2image`
         );
-        user.documents.govid2image.image = upload.secure_url;
+        user.documents.govid2.image = upload.secure_url;
       }
 
       if (req.files?.passportimage) {
