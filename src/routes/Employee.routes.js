@@ -12,8 +12,8 @@ employeerouter.route("/getuser").get(verifyjwt,getuser)
 employeerouter.route("/onboarding/:step").patch(
   verifyjwt,
   upload.fields([
-    { name: "aadharimage", maxCount: 1 },
-    { name: "panimage", maxCount: 1 },
+    { name: "govid1image", maxCount: 1 },
+    { name: "govid2image", maxCount: 1 },
     { name: "passportimage", maxCount: 1 },
     { name: "collegeid", maxCount: 1 }
   ]),
