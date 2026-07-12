@@ -1,5 +1,5 @@
 import {Router} from "express"
-import {  employeelogin, getuser, onboardingdetails } from "../controller/Employee.controller.js"
+import {  acknowledgment, employeelogin, getuser, onboardingdetails } from "../controller/Employee.controller.js"
 import { verifyjwt } from "../middleware/auth.middleware.js"
 import { upload } from "../middleware/multer.middleware.js"
 
@@ -9,6 +9,8 @@ employeerouter.route("/login").post(employeelogin)
 //get api
 employeerouter.route("/getuser").get(verifyjwt,getuser)
 //patch api
+employeerouter.route("/acknowledge").get(verifyjwt,acknowledgment) //post api
+
 employeerouter.route("/onboarding/:step").patch(
   verifyjwt,
   upload.fields([

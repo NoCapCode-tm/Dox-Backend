@@ -4,6 +4,7 @@ import { uploadToCloudinary } from "../utils/cloudinary.utils.js";
 import { Apierror } from "../utils/Apierror.utils.js";
 import { Apiresponse } from "../utils/Apiresponse.utils.js";
 import { asynchandler } from "../utils/Asynchandler.utils.js";
+import { validate } from "node-cron";
 
 
 
@@ -236,6 +237,34 @@ const onboardingdetails = async (req, res) => {
   );
 };
 
+
+export const acknowledgment = asynchandler(async(req,res)=>{
+  const user = req.user
+  const {acknowledge} = req.body
+
+ if(!user){
+    throw new Apierror(404,"Unauthorized User")
+  }
+
+  const employee = await User.findById(user._id)
+
+  if(!employee){
+    throw new Apierror(400,"Employee Not Found")
+  }
+
+  if(!acknowledge){
+    throw new Apierror(400,"Please enter all the field")
+  }
+
+  employee.policyhandbook=acknowledge
+  employee.save({validateBeforeSave:false})
+
+  res.status(200)
+  .json(new Apiresponse(200,
+    "Acknowledgement Completed", employee
+  ));
+
+})
 
 
 export {onboardingdetails,employeelogin,getuser}

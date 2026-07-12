@@ -20,6 +20,12 @@ const UserSchema = new mongoose.Schema({
         ref:"Role",
         default:null
     },
+     email:{
+        type:String,
+        lowercase:true,
+        unique:true,
+        trim:true
+    },
     Emails:{
         email:{
         type:String,
@@ -97,12 +103,12 @@ const UserSchema = new mongoose.Schema({
     phone:{
         permanent:{
         type:Number,
-        unique:true,
+        default:null,
         sparse:true
     },
      alternate:{
         type:Number,
-        unique:true,
+        default:null,
         sparse:true
     },
 },
@@ -123,20 +129,20 @@ const UserSchema = new mongoose.Schema({
         enum:["Manager","Human Resource","Intern","Administrator","Employee"],
         default:"Employee"
         },
-        Managerid:{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"Manager",
+        // Managerid:{
+        //     type:mongoose.Schema.Types.ObjectId,
+        //     ref:"Manager",
 
-        },
-        Hrid:{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"HR",
+        // },
+        // Hrid:{
+        //     type:mongoose.Schema.Types.ObjectId,
+        //     ref:"HR",
             
-        }
+        // }
     },
     role:{
         type:String,
-        enum:["Frontend Developer","Backend Developer","Full Stack Developer","QA","UI/UX Designer","Devops","Manager"],
+        // enum:["Frontend Developer","Content Writer","Backend Developer","Full Stack Developer","QA","UI/UX Designer","Devops","Manager"],
         default:null
     },
     status:{
@@ -144,20 +150,20 @@ const UserSchema = new mongoose.Schema({
         enum:["Onboarding","Paid" , "Unpaid" ,"Full Time","Contractual"],
         default:"Onboarding"
     },
-    Projects:[
-        {
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Project",
-        }
-    ],
-    Tasks:[{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Tasks"
-    }],
-    dailyreports:[{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Report"
-    }],
+    // Projects:[
+    //     {
+    //     type:mongoose.Schema.Types.ObjectId,
+    //     ref:"Project",
+    //     }
+    // ],
+    // Tasks:[{
+    //     type:mongoose.Schema.Types.ObjectId,
+    //     ref:"Tasks"
+    // }],
+    // dailyreports:[{
+    //     type:mongoose.Schema.Types.ObjectId,
+    //     ref:"Report"
+    // }],
 
     managerAssigned:{
         type:mongoose.Schema.Types.ObjectId,
@@ -442,10 +448,16 @@ acknowledge:{
     default:"",
 },
 
+policyhandbook:{
+    type:Boolean,
+    default:false
+},
+
 deleted:{
   type:Boolean,
   default:false
 }
+
 
 },{timestamps:true})
 
