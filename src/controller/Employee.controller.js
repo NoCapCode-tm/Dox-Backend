@@ -238,35 +238,22 @@ const onboardingdetails = async (req, res) => {
 };
 
 
-// Employee.controller.js
-export const acknowledgment = asynchandler(async (req, res) => {
-  const user = req.user;
-  const { acknowledge } = req.body;
+export const acknowledgment = asynchandler(async(req,res)=>{
+  const user = req.user
+  const {acknowledge} = req.body
 
-  if (!user) {
-    throw new Apierror(401, "Unauthorized User");
+ if(!user){
+    throw new Apierror(404,"Unauthorized User")
   }
 
-  if (acknowledge !== true) {
-    throw new Apierror(400, "Please confirm acknowledgment");
+  const employee = await User.findById(user._id)
+
+  if(!employee){
+    throw new Apierror(400,"Employee Not Found")
   }
 
-  const employee = await User.findById(user._id);
-  if (!employee) {
-    throw new Apierror(404, "Employee Not Found");
-  }
-
-  employee.policyhandbook = true;
-  await employee.save({ validateBeforeSave: false });
-
-  return res.status(200).json(
-    new Apiresponse(
-      200,
-      { policyhandbook: employee.policyhandbook },
-      "Acknowledgement Completed"
-    )
-  );
-});
+  if(!acknowledge){
+    throw new Apierror(400,"Please enter all the field"
 
 
 export {onboardingdetails,employeelogin,getuser}
