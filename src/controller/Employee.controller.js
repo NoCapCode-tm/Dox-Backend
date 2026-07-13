@@ -253,7 +253,18 @@ export const acknowledgment = asynchandler(async(req,res)=>{
   }
 
   if(!acknowledge){
-    throw new Apierror(400,"Please enter all the field"
+    throw new Apierror(400,"Please enter all the field")
+  }
+
+  employee.policyhandbook=acknowledge
+  employee.save({validateBeforeSave:false})
+
+  res.status(200)
+  .json(new Apiresponse(200,
+    "Acknowledgement Completed", employee
+  ));
+
+})
 
 
 export {onboardingdetails,employeelogin,getuser}
