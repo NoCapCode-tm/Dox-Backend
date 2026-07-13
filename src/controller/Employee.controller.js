@@ -256,14 +256,12 @@ export const acknowledgment = asynchandler(async(req,res)=>{
     throw new Apierror(400,"Please enter all the field")
   }
 
-  employee.policyhandbook=acknowledge
-  employee.save({validateBeforeSave:false})
+  employee.policyhandbook = acknowledge
+  
+  // ✅ FIXED: Added 'await' here
+  await employee.save({validateBeforeSave:false})
 
-  res.status(200)
-  .json(new Apiresponse(200,
-    "Acknowledgement Completed", employee
-  ));
-
+  res.status(200).json(new Apiresponse(200, "Acknowledgement Completed", employee));
 })
 
 
