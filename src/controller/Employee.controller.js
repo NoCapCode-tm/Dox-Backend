@@ -265,4 +265,5 @@ export const acknowledgment = asynchandler(async(req,res)=>{
 })
 
 
+
 export {onboardingdetails,employeelogin,getuser}
