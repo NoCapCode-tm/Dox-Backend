@@ -1,5 +1,6 @@
 import {Router} from "express"
-import {  acknowledgment, employeelogin, getuser, onboardingdetails } from "../controller/Employee.controller.js"
+
+import {  acknowledgment, employeelogin,logout, getuser, onboardingdetails } from "../controller/Employee.controller.js"
 import { verifyjwt } from "../middleware/auth.middleware.js"
 import { upload } from "../middleware/multer.middleware.js"
 
@@ -24,6 +25,7 @@ employeerouter.route("/onboarding/:step").patch(
   ]),
   onboardingdetails
 );
+employeerouter.route("/logout").get(logout)
 
 
 

@@ -237,6 +237,19 @@ const onboardingdetails = async (req, res) => {
   );
 };
 
+export const logout = asynchandler(async(req,res)=>{
+    const options = {
+  httpOnly: true,
+  secure: true,    
+  sameSite:"None" ,
+  maxAge:9*60*60*1000,
+}
+   return  res.status(200)
+    .clearCookie("token",options)
+    .json(new Apiresponse(200,"User loggedout successfully",{}))
+ 
+})
+
 
 export const acknowledgment = asynchandler(async(req,res)=>{
   const user = req.user
